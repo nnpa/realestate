@@ -40,7 +40,3 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-bootRun {
-    systemProperty "spring.profiles.active", "production"
-}
-//runtimeOnly 'com.mysql:mysql-connector-j'
