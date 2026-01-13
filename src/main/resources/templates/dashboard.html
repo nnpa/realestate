@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Список зданий</title> 
+    <meta charset="UTF-8">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Список зданий</h2>
+        <a href="/new" class="btn btn-success">Добавить здание</a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4" th:each="el : ${builds}">
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <img th:src="@{/image/{name}(name=${el.img})}" class="card-img-top" alt="Изображение" style="height: 250px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${el.name}">Наименование</h5>
+                    <p class="card-text"><strong>Описание:</strong> <span th:text="${el.description}"></span></p>
+                    <p class="card-text"><strong>Адрес:</strong> <span th:text="${el.address}"></span></p>
+                    <p class="card-text"><strong>Этажность:</strong> <span th:text="${el.flor}"></span></p>
+                    <p class="card-text"><strong>Комнат:</strong> <span th:text="${el.rooms}"></span></p>
+                    <p class="card-text"><strong>Площадь:</strong> <span th:text="${el.square}"></span></p>
+                    <p class="card-text"><strong>Цена:</strong> <span th:text="${el.cost}"></span></p>
+                    <p class="card-text"><strong>Телефон:</strong> <span th:text="${el.phone}"></span></p>
+
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a th:href="@{/edit/{id}(id=${el.id})}" class="btn btn-primary btn-sm">Редактировать</a>
+                    <a th:href="@{/delete/{id}(id=${el.id})}" class="btn btn-danger btn-sm">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-outline-secondary">Выйти</button>
+    </form>
+
+</div>
+
+<!-- Скрипты Bootstrap (по желанию) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

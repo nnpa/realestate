@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить здание</title>
+    <!-- Подключение Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow p-4" style="width: 100%; max-width: 600px;">
+        <h2 class="card-title text-center mb-4">Добавить здание</h2>
+
+        <form th:action="@{/create}" method="post" enctype="multipart/form-data">
+
+            <input type="hidden" name="user_id" th:value="${user_id}">
+
+            <div class="mb-3">
+                <label class="form-label">Название</label>
+                <input type="text" name="name" class="form-control" placeholder="Название" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Описание</label>
+                <textarea name="description" class="form-control" placeholder="Описание" rows="3"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Адрес</label>
+                <input type="text" name="address" class="form-control" placeholder="Адрес">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Этажность</label>
+                <input type="text" name="flor" class="form-control" placeholder="Этажность">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Комнат</label>
+                <input type="text" name="rooms" class="form-control" placeholder="Комнат">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Площадь</label>
+                <input type="text" name="square" class="form-control" placeholder="Площадь">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Цена</label>
+                <input type="text" name="cost" class="form-control" placeholder="Цена">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Телефон</label>
+                <input type="text" name="phone" class="form-control" placeholder="Телефон">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Изображение</label>
+                <input type="file" name="image" class="form-control" accept="image/*" required>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">Сохранить</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- Скрипты Bootstrap (по желанию, для JS компонентов) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
