@@ -13,17 +13,11 @@ import org.springframework.data.jpa.repository.NativeQuery;
 import org.springframework.data.jpa.repository.Query;
 
 public interface UserRepo extends JpaRepository<User, Long> {
-    User findByUsername(String username);
+User findByUsername(String username);
+
     User findByEmail(String email);
-    //@NativeQuery(value = "SELECT * FROM `user` WHERE verefication_token = ?1")
-    User findByVereficationToken(String token);
+
+    User findByVerificationToken(String verificationToken);
     
-    @Modifying
-    @Transactional
-    @Query(
-        value = "INSERT INTO `user_roles` (username, role) VALUES (?1, 'ROLE_USER')",
-        nativeQuery = true
-    )
-    void insertRole(String username);
 
 }

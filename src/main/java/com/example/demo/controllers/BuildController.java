@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -60,7 +61,7 @@ public class BuildController {
         User user = userRepo.findByUsername(username);
         
         
-                Iterable<Build> builds = buildRepository.findByUserId(user.getId());
+                List<Build> builds = buildRepository.findByUserId(user.getId());
                 model.addAttribute("builds", builds);
                 return "dashboard";
 	}
@@ -100,6 +101,18 @@ public class BuildController {
 
             @RequestParam("image") MultipartFile image
     ) throws IOException {
+        
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth == null || !auth.isAuthenticated()
+                || auth.getPrincipal().equals("anonymousUser")) {
+            
+        }
+        
+        UserDetails userDetails = (UserDetails) auth.getPrincipal();
+        String username = userDetails.getUsername();
+        
+        User user = userRepo.findByUsername(username);
 
         if (image.isEmpty()) {
             throw new RuntimeException("Файл не выбран");
@@ -117,7 +130,7 @@ public class BuildController {
         // сохраняем в БД
         Build build = new Build();
         build.setName(name);
-        build.setUser_id(user_id);
+        build.setUser(user);
         build.setDescription(description);
         build.setAddress(address);
         build.setFlor(flor);

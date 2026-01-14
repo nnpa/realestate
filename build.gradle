@@ -28,10 +28,10 @@ dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
 	implementation 'org.springframework.boot:spring-boot-starter'
+	runtimeOnly 'com.mysql:mysql-connector-j'
         implementation 'org.springframework.boot:spring-boot-starter-security'
         implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
         testImplementation 'org.springframework.security:spring-security-test'
-        runtimeOnly 'org.postgresql:postgresql'
 
         implementation 'org.springframework.boot:spring-boot-starter-mail'
 

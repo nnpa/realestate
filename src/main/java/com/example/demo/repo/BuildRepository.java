@@ -13,13 +13,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.NativeQuery;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
  * @author User
  */
 public interface BuildRepository extends CrudRepository<Build, Long>{
-    @Query("SELECT b FROM Build b WHERE b.user_id = :userId")
-
-    List<Build> findByUserId(Long userId);
+    @Query("SELECT b FROM Build b WHERE b.user.id = :userId")
+    List<Build> findByUserId(@Param("userId") Long userId);
 }

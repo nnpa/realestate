@@ -56,11 +56,11 @@ public class WebSecurityConfig {
         JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource);
 
         manager.setUsersByUsernameQuery(
-            "select username, password, active from `user` where username=?"
+            "select username, password, active from users where username=?"
         );
 
         manager.setAuthoritiesByUsernameQuery(
-            "select username, role from user_roles where username=?"
+            "select u.username, r.role from `users` u join user_roles r on u.id = r.user_id where u.username = ?"
         );
 
         return manager;
